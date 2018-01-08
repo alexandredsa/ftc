@@ -1,0 +1,27 @@
+{
+  "name": "ftc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandredsa/ftc.git"
+  },
+  "author": "Alexandre Alves",
+  "license": "ISC",
+  "homepage": "https://github.com/alexandredsa/ftc",
+  "dependencies": {
+    "fs-extra": "^4.0.1",
+    "moment": "^2.18.1",
+    "morgan": "^1.9.0",
+    "mongoose": "^4.9.9",
+    "mongoose-paginate": "^5.0.3",
+    "restify": "^4.3.0",
+    "underscore": "^1.8.3",
+    "csv-parse": "^2.0.0",
+    "csvtojson": "^1.1.9"
+  }
+}
