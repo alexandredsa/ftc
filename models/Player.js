@@ -27,7 +27,7 @@ const PlayerSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Não Listado', 'Para Transfêrencia'],
+    enum: ['NOT_LISTED', 'FOR_TRANSFER'],
     required: true,
     index: true
   },

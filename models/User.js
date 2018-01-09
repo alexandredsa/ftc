@@ -16,9 +16,12 @@ const UserSchema = new mongoose.Schema({
   losses: {
     type: Number
   },
-  matches: {
-    type: Number
-  },
+  matches: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Match',
+    required: true,
+    index: true
+  }],
   coins: {
     type: Number
   },

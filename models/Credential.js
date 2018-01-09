@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const Credentialchema = new mongoose.Schema({
   login: {
-    type: String
+    type: String,
+    index: { unique: true }
   },
   password: {
     type: String
@@ -11,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     versionKey: false
   });
 
-UserModel = mongoose.model('User', UserSchema);
+CredentialModel = mongoose.model('Credential', Credentialchema);
 
 
-module.exports = UserModel;
+module.exports = CredentialModel;
