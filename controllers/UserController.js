@@ -1,6 +1,7 @@
 const Credential = require('../models/Credential');
 const User = require('../models/User');
 const md5 = require('md5');
+const hat = require('hat');
 
 class UserController {
     signUp(name, login, password) {
@@ -28,14 +29,18 @@ class UserController {
                 .then(user => {
                     if (!user)
                         reject({ status: 401, msg: 'INVALID_CREDENTIALS' });
+                    this._user = user;
 
+                    return Credential.findOneAndUpdate({ login }, { token: hat() });
+                })
+                .then(() => {
                     resolve({
-                        name: user.name,
-                        score: user.score,
-                        wins: user.wins,
-                        losses: user.losses,
-                        draws: user.draws,
-                        coins: user.coins
+                        name: this._user.name,
+                        score: this._user.score,
+                        wins: this._user.wins,
+                        losses: this._user.losses,
+                        draws: this._user.draws,
+                        coins: this._user.coins
                     });
                 })
                 .catch(err => reject({ status: 500, msg: err }));

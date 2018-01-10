@@ -7,6 +7,9 @@ const Credentialchema = new mongoose.Schema({
   },
   password: {
     type: String
+  },
+  token: {
+    type: String
   }
 }, {
     versionKey: false
