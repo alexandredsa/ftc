@@ -1,5 +1,7 @@
 const importer = require('./importer');
 const users = require('./users');
+const packs = require('./packs');
+const filter = require('../middlewares/filter');
 
 module.exports = (app) => {
     app.get('health', (req, res, next) => {
@@ -11,5 +13,5 @@ module.exports = (app) => {
 
     app.post('users/signup', users.signUp);
     app.post('users/auth', users.auth);
-    
+    app.get('packs', filter, packs.getAll);
 };
