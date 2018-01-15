@@ -3,6 +3,7 @@ const users = require('./users');
 const packs = require('./packs');
 const clubs = require('./clubs');
 const filter = require('../middlewares/filter');
+const squads = require('./squads');
 
 module.exports = (app) => {
     app.get('health', (req, res, next) => {
@@ -17,4 +18,8 @@ module.exports = (app) => {
     app.get('packs', filter, packs.getAll);
     app.get('packs/:id/open', filter, packs.open);
     app.get('clubs', filter, clubs.getAll);
+    app.get('squads', filter, squads.getAll);
+    app.post('squads', filter, squads.create);
+    app.put('mysquad/players/exclude', filter, squads.update);
+    app.get('mysquad', filter, squads.getByUser);
 };

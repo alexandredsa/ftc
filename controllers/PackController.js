@@ -14,8 +14,12 @@ class PackController {
             Pack.open(id)
                 .then(players => {
                     this._players = players;
-                    return Squad.findOne({ user: user._id });
+                    return Squad.update({ user: user._id }, {
+                        $push:
+                        { 'players': { $each: this._players } }
+                    }, { upsert: true });
                 })
+                .then(result => Squad.findOne({ user: user._id }, 'players club _id').populate('players club'))
                 .then(squad => resolve({ squad, players: this._players }))
                 .catch(err => reject(err))
         });
