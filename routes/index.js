@@ -1,6 +1,7 @@
 const importer = require('./importer');
 const users = require('./users');
 const packs = require('./packs');
+const clubs = require('./clubs');
 const filter = require('../middlewares/filter');
 
 module.exports = (app) => {
@@ -13,6 +14,7 @@ module.exports = (app) => {
 
     app.post('users/signup', users.signUp);
     app.post('users/auth', users.auth);
-    app.get('packs', packs.getAll);
-    app.get('packs/:id/open', packs.open);
+    app.get('packs', filter, packs.getAll);
+    app.get('packs/:id/open', filter, packs.open);
+    app.get('clubs', filter, clubs.getAll);
 };

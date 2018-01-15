@@ -10,8 +10,9 @@ module.exports = {
 
     open: (req, res, next) => {
         const { id } = req.params;
+        const { user } = req.session;
         const packController = new PackController();
-        packController.open(id)
+        packController.open(id, user)
             .then(packs => res.json(200, packs))
             .catch(err => res.json(err.status, err.msg));
     }

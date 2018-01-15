@@ -45,7 +45,6 @@ PackModel.sortPack = (minRating, maxRating, qty) => {
   return new Promise((resolve, reject) => {
     Squad.find()
       .then(squads => {
-        console.log(squads);
         const ids = [];
 
         squads.forEach(squad => {
