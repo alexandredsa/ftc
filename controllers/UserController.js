@@ -19,18 +19,18 @@ class UserController {
 
     auth(login, password) {
         return new Promise((resolve, reject) => {
-            User.findOne({}).populate({
-                path: 'credentials',
-                match: {
-                    login,
-                    password: md5(password)
-                }
+            Credential.findOne({
+                login,
+                password: md5(password)
             })
-                .then(user => {
-                    if (!user)
+                .then(credential => {
+                    if (!credential)
                         reject({ status: 401, msg: 'INVALID_CREDENTIALS' });
-                    this._user = user;
 
+                    return User.findOne({ credentials: credential._id });
+                })
+                .then(user => {
+                    this._user = user;
                     return Credential.findOneAndUpdate({ login }, { token: hat() });
                 })
                 .then(() => {
